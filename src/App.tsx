@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from '@mui/material';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import AnimeList from './components/AnimeList';
+import AnimeDetail from './components/AnimeDetail';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container sx={{ py: 4 }}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/page/1" />} />
+        <Route path="/page/:page" element={<AnimeList />} />
+        <Route path="/anime/:id" element={<AnimeDetail />} />
+        <Route path="*" element={<div>404 Not Found</div>} />
+      </Routes>
+    </Container>
   );
-}
+};
 
 export default App;
